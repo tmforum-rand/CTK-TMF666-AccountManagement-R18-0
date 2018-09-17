@@ -38,7 +38,7 @@ You should input:
 
 The script will now run for a few minutes and when it ends, you will have a resultsHTML.html file inside the folder, this is the file you need to forward to TMForum to get your certification if your API passed every test, the file should look like this:
 
-![CTK Example Image](https://github.com/tmforum-rand/CTK-TMF666-AccountManagement/blob/master/CTK-TMF666-AccountManagement/Output-Example.png)
+![CTK Example Image](https://github.com/tmforum-rand/CTK-TMF666-AccountManagement-R18-0/blob/master/images/Output-Example.png)
 
 
 If there are no failures then you have passed the CTK and your API is conformant with all
