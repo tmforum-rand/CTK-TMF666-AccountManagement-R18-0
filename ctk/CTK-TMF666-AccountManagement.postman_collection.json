@@ -1,0 +1,2297 @@
+{
+	"info": {
+		"_postman_id": "f4b42870-bc2e-4fae-aef6-621d3125c0f5",
+		"name": "CTK-TMF666-AccountManagement",
+		"description": "This is Swagger UI environment generated for the TMF Account Management specification",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "b350f401-ac5f-4319-ac9c-df7eb29655ea",
+			"name": "TC_Acc_N1 – Create new PartyAccount with minimum required information",
+			"item": [
+				{
+					"_postman_id": "3fd3e58b-d13c-4760-91a3-d769705110dc",
+					"name": "Creates a 'PartyAccount'",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4304df88-3a23-41cf-a790-f6ac998386fa",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"//Response Code 201-Created",
+									"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });",
+									"",
+									"pm.test(\"Location is present on header\", function () {",
+									"    pm.response.to.have.header(\"Location\");",
+									"});",
+									"",
+									"pm.test(\"Location is present on header\", function () {",
+									"    pm.response.to.have.header(\"Location\");",
+									"});",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"      ",
+									"    pm.globals.set(\"IDpa1\", instance.id);",
+									"    pm.globals.set(\"HREFpa1\", instance.href);",
+									"    pm.globals.set(\"NAMEpa1\", instance.name);",
+									"    pm.globals.set(\"STATEpa1\", instance.state);",
+									"    pm.globals.set(\"RELATEDPARTYpa1\", instance.relatedParty);",
+									"",
+									"   ",
+									"    var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"    pm.test('Instance ' +index+ ' has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"    ",
+									"    pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"    pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has description attribute', function() { pm.expect(instance.description).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has ticketType attribute', function() { pm.expect(instance.ticketType).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has severity attribute', function() { pm.expect(instance.severity).to.be.a('string'); });",
+									"    ",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   pm.globals.set(\"IDpa1\", instance.id);",
+									"    pm.globals.set(\"HREFpa1\", instance.href);",
+									"    pm.globals.set(\"NAMEpa1\", instance.name);",
+									"    pm.globals.set(\"STATEpa1\", instance.state);",
+									"    pm.globals.set(\"RELATEDPARTYpa1\", instance.relatedParty);",
+									"",
+									"    ",
+									"    var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"    pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"    ",
+									"    pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"    pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has relatedParty array', function() {",
+									"       pm.expect(instance.relatedParty).to.be.a('array');",
+									"    });",
+									"    ",
+									"    instance.relatedParty.forEach(function(rp, index) {",
+									"        pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"        pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"    });",
+									"    ",
+									"    ",
+									"   ",
+									"}",
+									"",
+									"",
+									"pm.test(\"Location on header matches expected\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Location\")).to.equal(request.url + \"/\" +pm.globals.get(\"IDpa1\"));",
+									"    ",
+									"    ",
+									"    ",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"MyAccount\",\n    \"relatedParty\": [\n        {\n            \"id\": \"101\",   \n            \"name\": \"John Smith\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "23b59bab-3c98-4f68-82a3-5538af676fa1",
+					"name": "List or find 'PartyAccount' objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4d9cd2b2-cfaa-47b3-9a94-d48ada06642f",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].name); });",
+									"        ",
+									"    }",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "8f5b837e-ee79-4f4f-8216-72fca69becf4",
+					"name": "Find party account by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65667f0d-ee5b-4902-89e7-d861b5cc8fe6",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"    else {",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa1\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"    }",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"    else {",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa1\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"    }",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount/{{IDpa1}}",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount",
+								"{{IDpa1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "7743218d-bff2-4878-967b-0637a007bcc6",
+			"name": "TC_PartyAcc_N2 – Create a new PartyAccount with minimum required information",
+			"item": [
+				{
+					"_postman_id": "aa021ee7-2875-483e-82e1-4d5ed3aab65b",
+					"name": "Creates a 'PartyAccount'",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c7872aab-97b5-4cb2-aeb8-eac333620288",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"//Response Code 201-Created",
+									"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });",
+									"",
+									"pm.test(\"Location is present on header\", function () {",
+									"    pm.response.to.have.header(\"Location\");",
+									"});",
+									"",
+									"pm.test(\"Location is present on header\", function () {",
+									"    pm.response.to.have.header(\"Location\");",
+									"});",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"      ",
+									"    pm.globals.set(\"IDpa2\", instance.id);",
+									"    pm.globals.set(\"HREFpa2\", instance.href);",
+									"    pm.globals.set(\"NAMEpa2\", instance.name);",
+									"    pm.globals.set(\"STATEpa2\", instance.state);",
+									"    pm.globals.set(\"RELATEDPARTYpa2\", instance.relatedParty);",
+									"",
+									"   ",
+									"    var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"    pm.test('Instance ' +index+ ' has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"    ",
+									"    pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"    pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has description attribute', function() { pm.expect(instance.description).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has ticketType attribute', function() { pm.expect(instance.ticketType).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has severity attribute', function() { pm.expect(instance.severity).to.be.a('string'); });",
+									"    ",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   pm.globals.set(\"IDpa2\", instance.id);",
+									"    pm.globals.set(\"HREFpa2\", instance.href);",
+									"    pm.globals.set(\"NAMEpa2\", instance.name);",
+									"    pm.globals.set(\"STATEpa2\", instance.state);",
+									"    pm.globals.set(\"RELATEDPARTYpa2\", instance.relatedParty);",
+									"",
+									"    ",
+									"    var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"    pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"",
+									"    ",
+									"    pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"    pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"    ",
+									"    pm.test('Response has relatedParty array', function() {",
+									"       pm.expect(instance.relatedParty).to.be.a('array');",
+									"    });",
+									"    ",
+									"    instance.relatedParty.forEach(function(rp, index) {",
+									"        pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"        pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"    });",
+									"    ",
+									"    ",
+									"   ",
+									"}",
+									"",
+									"",
+									"pm.test(\"Location on header matches expected\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Location\")).to.equal(request.url + \"/\" +pm.globals.get(\"IDpa2\"));",
+									"    ",
+									"    ",
+									"    ",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"AnotherAccount\",\n    \"relatedParty\": [\n        {\n            \"id\": \"201\",     \n            \"name\": \"Acme Trading\"        \n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "ab74a5bf-90c4-4ce8-8f28-3d1dbdb240b7",
+					"name": "List or find 'PartyAccount' objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6fcafe7f-0e65-4c10-b3fa-e5ae119413e1",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa2\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].name); });",
+									"        ",
+									"    }",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa2\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "5a41d6ae-a1cd-425a-bbde-b05650e9b082",
+					"name": "Find party account by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6082dad9-2b79-4b7d-b982-8a8e27905d2d",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa2\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"    else {",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa2\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"    }",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa2\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"    else {",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa2\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"    }",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount/{{IDpa2}}",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount",
+								"{{IDpa2}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "3feb1b15-bfd2-4bf1-964f-3cefc3753b17",
+			"name": "TC_PartyAcc_N3 – Search for PartyAccounts with specific characteristics",
+			"item": [
+				{
+					"_postman_id": "8c4009d0-c744-4581-9e27-0eb6458ef46a",
+					"name": "List 'PartyAccount' objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "42e800a8-9886-468e-b9a8-14ca225416e3",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa2\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa2\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "024b1433-d3bd-46e8-afdf-822463ae5f4c",
+					"name": "Get PartyAccount by name (MyAccount)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f7b722d-05b9-4eea-b230-7c51b861b190",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa1\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa1\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount?name=MyAccount",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "MyAccount"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "67dbd305-105f-4600-ac13-5a552c5e10f6",
+					"name": "Get PartyAccount by name (AnotherAccount)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aaee0f6c-45da-4fa7-b00b-5478b525d401",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa2\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa2\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa2\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa2\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount?name=AnotherAccount",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "AnotherAccount"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "e8104520-c60e-4cff-b558-6ad86d541e1a",
+			"name": "TC_PartyAcc_N4 – Filtered retrieval of PartyAccounts",
+			"item": [
+				{
+					"_postman_id": "5146241e-0592-4c4c-8fd5-4a100452dc06",
+					"name": "Get party account by id and filter name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2aaccf5c-18e1-469f-9fdd-a5fba9421b38",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa1\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"        pm.test('Only filtered fields in body', function(){",
+									"            pm.expect(Object.keys(instance).length).to.eql(requiredAttributes.length);",
+									"        ",
+									"        });",
+									"        ",
+									"       ",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"       ",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"       ",
+									"        ",
+									"    }",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa1\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'name' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"        pm.test('Only filtered fields in body', function(){",
+									"            pm.expect(Object.keys(instance).length).to.eql(requiredAttributes.length);",
+									"        ",
+									"        });",
+									"        ",
+									"       ",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"       ",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"       ",
+									"        ",
+									"    }",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount/{{IDpa1}}?fields=name",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount",
+								"{{IDpa1}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "426468c8-c0b3-4ba2-8c91-6ac2c81c8327",
+					"name": "Get party account by id and filter state",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b98e1cb0-df81-43e4-8a84-f75c76b5760f",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa2\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'state' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"        pm.test('Only filtered fields in body', function(){",
+									"            pm.expect(Object.keys(instance).length).to.eql(requiredAttributes.length);",
+									"        ",
+									"        });",
+									"        ",
+									"       ",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"       ",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"       ",
+									"        ",
+									"    }",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"  if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa2\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'state' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"        pm.test('Only filtered fields in body', function(){",
+									"            pm.expect(Object.keys(instance).length).to.eql(requiredAttributes.length);",
+									"        ",
+									"        });",
+									"        ",
+									"       ",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"       ",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"       ",
+									"        ",
+									"    }",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount/{{IDpa2}}?fields=state",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount",
+								"{{IDpa2}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "state"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "30f9896f-0c9a-40a5-9e94-5b4e990bdfe9",
+			"name": "TC_PartyAcc_N5 – Filtered Search and Filtered data response",
+			"item": [
+				{
+					"_postman_id": "a4a47c8f-946d-4ce1-a651-08ef5a5642ac",
+					"name": "Get party account by name and filter state",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1798fccf-dd41-4ee5-801b-408f1f013686",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa1\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'state' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"        pm.test('Only filtered fields in body', function(){",
+									"            pm.expect(Object.keys(instance).length).to.eql(requiredAttributes.length);",
+									"        ",
+									"        });",
+									"        ",
+									"       ",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"       ",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"       ",
+									"        ",
+									"    }",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa1\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'state' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"        pm.test('Only filtered fields in body', function(){",
+									"            pm.expect(Object.keys(instance).length).to.eql(requiredAttributes.length);",
+									"        ",
+									"        });",
+									"        ",
+									"       ",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"       ",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"       ",
+									"        ",
+									"    }",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount?name=MyAccount&fields=state",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "MyAccount"
+								},
+								{
+									"key": "fields",
+									"value": "state"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "741f8a61-482a-458a-94ae-98e96799b012",
+			"name": "TC_PartyAcc_N6 – Update an existing PartyAccount resource with only patchable attributes",
+			"item": [
+				{
+					"_postman_id": "875acafd-3827-444b-b988-d70fd85ecdee",
+					"name": "Change name of ID1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e0499dc4-e2bc-4a60-8479-f123ee8565ce",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200 or 201\", function () { pm.expect(pm.response.code).to.be.oneOf([200, 201]); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"        pm.globals.set(\"NAMEpa1\", instance.name);",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"    else {",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa1\") + \" should be return but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"    }",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"        pm.globals.set(\"NAMEpa1\", instance.name);",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa1\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa1\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa1\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa1\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa1\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"    else {",
+									"        pm.test('Only id: ' + pm.globals.get(\"IDpa1\") + \" should be returned, but id: \" + instance.id + \" was in the body\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"    }",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"MyOldAccount\"\n}"
+						},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount/{{IDpa1}}",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount",
+								"{{IDpa1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "cb6d56c3-2f49-486e-b977-75da465861de",
+			"name": "TC_PartyAcc_N7 – Delete an existing Individual resource",
+			"item": [
+				{
+					"_postman_id": "4608b7f3-76a9-43aa-877a-422606861aa8",
+					"name": "Delete ID1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "134d63e5-f1b5-49a1-997a-682545d8b5db",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 204\", function () { pm.response.to.have.status(204); });",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"MyOldAccount\"\n}"
+						},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount/{{IDpa1}}",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount",
+								"{{IDpa1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "c66fc287-6b99-453a-be23-ea1f726ea6b0",
+					"name": "List or find 'PartyAccount' objects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8c05337-6394-4a06-a794-303c79193a14",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"pm.test('Content-Type is present', function() { pm.response.to.have.header('Content-Type') });",
+									"pm.test('Content-Type is application/json', function() { pm.response.headers.has('application/json') });",
+									"",
+									"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+									"",
+									"",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"if (Array.isArray(jsonData) && (jsonData.length > 0)) {",
+									"  jsonData.forEach(function(instance, index) {",
+									"      ",
+									"    if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"        pm.test('id: ' + pm.globals.get(\"IDpa1\") + \" is supposed to not exist at this point\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa2\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].name); });",
+									"        ",
+									"    }",
+									"  });",
+									"}",
+									"else {",
+									"    var instance = pm.response.json();",
+									"    ",
+									"   if (instance.id == pm.globals.get(\"IDpa1\")){",
+									"    ",
+									"        pm.test('id: ' + pm.globals.get(\"IDpa1\") + \" is supposed to not exist at this point\", function() {",
+									"                pm.expect(1).to.equal(0);",
+									"        });",
+									"        ",
+									"        ",
+									"    }",
+									"    ",
+									"    if (instance.id == pm.globals.get(\"IDpa2\")){",
+									"    ",
+									"           ",
+									"        var requiredAttributes = [ 'href', 'id', 'name', 'state', 'relatedParty' ];",
+									"        pm.test('Instance has all mandatory attributes', function() { pm.expect(Object.keys(instance)).to.include.members(requiredAttributes) } );",
+									"    ",
+									"        ",
+									"        pm.test('Response has id attribute', function() { pm.expect(instance.id).to.be.a('string'); });",
+									"        pm.test('Response has href attribute', function() { pm.expect(instance.href).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has name attribute', function() { pm.expect(instance.name).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has state attribute', function() { pm.expect(instance.state).to.be.a('string'); });",
+									"        ",
+									"        pm.test('Response has relatedParty array', function() {",
+									"           pm.expect(instance.relatedParty).to.be.a('array');",
+									"        });",
+									"        ",
+									"        instance.relatedParty.forEach(function(rp, index) {",
+									"            pm.test('Response has relatedParty.id attribute', function() { pm.expect(rp.id).to.be.a('string'); });",
+									"            pm.test('Response has relatedParty.name attribute', function() { pm.expect(rp.name).to.be.a('string'); });",
+									"        });",
+									"        ",
+									"        ",
+									"        pm.test('Response id matches POST', function() { pm.expect(instance.id).to.equal(pm.globals.get(\"IDpa2\")); });",
+									"        pm.test('Response href matches POST', function() { pm.expect(instance.href).to.equal(pm.globals.get(\"HREFpa2\")); });",
+									"        pm.test('Response name matches POST', function() { pm.expect(instance.name).to.equal(pm.globals.get(\"NAMEpa2\")); });",
+									"        pm.test('Response state matches POST', function() { pm.expect(instance.state).to.equal(pm.globals.get(\"STATEpa2\")); });",
+									"        pm.test('Response relatedParty.id matches POST', function() { pm.expect(instance.relatedParty[0].id).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].id); });",
+									"        pm.test('Response relatedParty.name matches POST', function() { pm.expect(instance.relatedParty[0].name).to.equal(pm.globals.get(\"RELATEDPARTYpa2\")[0].name); });",
+									"        ",
+									"    }",
+									"    ",
+									"        ",
+									"    ",
+									"    ",
+									"    ",
+									"}",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "2624390d-d7c2-4159-99ec-0708902e659e",
+			"name": "TC_PartyAcc_E1 – Unknown PartyAccount identifier",
+			"item": [
+				{
+					"_postman_id": "e57ce2d3-dc71-49b9-86af-dea69e2fce7c",
+					"name": "Error 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7c3985d7-0f4d-402e-9a79-b301d2011730",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });",
+									"",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount/12484878787",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount",
+								"12484878787"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "0c82ee69-8f80-40a7-8c74-d1c5b7e96024",
+			"name": "TC_Acc_E2 – Invalid Request – Missing mandatory parameter",
+			"item": [
+				{
+					"_postman_id": "e921651b-8c11-48a7-882f-4424c77b929c",
+					"name": "Bad Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "391e1fdf-e96c-4a23-a171-49048232a5cb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });",
+									"",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"relatedParty\": [\n        {\n            \"id\": 301,     \n            \"name\": \"Tom Smith\"        \n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "e34451f2-b52f-4ef5-8639-5fae03b36f95",
+			"name": "TC_PartyAcc_E3 – Update an existing PartyAccount with non-patchable parameters",
+			"item": [
+				{
+					"_postman_id": "8bd7a943-12fd-47ac-84bd-253828f1b348",
+					"name": "Invalid Patch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2a347682-3111-49c0-af59-ac053a0f56d0",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is error\", function () {",
+									"    pm.response.to.be.error",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"MyOldAccount\",\n    \"id\": \"123123123123\"\n}"
+						},
+						"url": {
+							"raw": "{{AccountManagermentAPI}}/partyAccount/{{IDpa1}}",
+							"host": [
+								"{{AccountManagermentAPI}}"
+							],
+							"path": [
+								"partyAccount",
+								"{{IDpa1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
